@@ -309,7 +309,7 @@ Para realizar esto se usó la prueba t student, en la cual si se obtiene un valo
 
 ![tstudent](https://github.com/user-attachments/assets/8b8e4fc8-1438-4fb6-9b3f-a3197854bd34)
 
-Se tomo el promedio de las frecuencias medianas de las contracciones obtenidas en los primeros datos de toda la muestra (a penas se comenzo a medir la actividad muscular), dando un valor de 49, este sera nuestro valor esperado.
+Se tomo el promedio de las frecuencias medianas de las contracciones obtenidas en los primeros datos de toda la muestra (a penas se comenzo a medir la actividad muscular), dando un valor de 249, este sera nuestro valor esperado.
 
 Segmento 1 primeras contracciones:
 
@@ -355,6 +355,7 @@ En este laboratorio, se logró procesar y analizar la señal EMG del flexor prof
 
 En conclusión, en el presente laboratorio se pudo comprobar la utilidad de implementar un filtro butterworth de 4to orden, para el amortiguamiento de frecuencias no deseadas, a la hora de filtrar los datos de una señal EMG, estos contando con una frecuencia de corte de 20Hz en el pasa altos, y una de 300 Hz en el pasa bajos, teniendo en cuenta la frecuencia de muestreo tomada de 1000 Hz.
 
+Es importante resaltar que la hipótesis alternativa(H1), la cual mencionaba que al realizar la comparación de las medias entre los últimos y los primeros resultados, la media disminuirá en torno a qué el músculo llegaba al fallo, lo que indica una disminución de la actividad eléctrica, fue la correcta. Además, es importante recalcar que la media esperada fue de un valor de 249, por lo cual el valor de la variable p, la cual corresponde al valor significativo al dar menor a 0.05, se permite descartar la hipótesis nula.
 ## 8. Anexos
 - [Link al código utilizado](ruta_a_codigo_github.py)
 - [Archivo de datos EMG utilizado](ruta_a_datos_EMG.txt)
