@@ -310,11 +310,17 @@ Para realizar esto se usó la prueba t student, en la cual si se obtiene un valo
 ![tstudent](https://github.com/user-attachments/assets/8b8e4fc8-1438-4fb6-9b3f-a3197854bd34)
 
 Se tomo el promedio de las frecuencias medianas de las contracciones obtenidas en los primeros datos de toda la muestra (a penas se comenzo a medir la actividad muscular), dando un valor de 49, este sera nuestro valor esperado.
+
 Segmento 1 primeras contracciones:
+
   Frecuencia Mediana: 248.0 Hz
+  
 Segmento 2 primeras contracciones:
+
   Frecuencia Mediana: 251.97 Hz
+  
 Segmento 3 primeras contracciones:
+
   Frecuencia Mediana: 248.03 Hz
 Ahora, dentro de un vector guardaremos las frecuencias medianas y calcularemos la media muestral.
 ```python
@@ -331,10 +337,14 @@ t_stat, p_val = stats.ttest_1samp(frecuencias_medianas, media_esperada)
 print(f"Estadístico t: {t_stat}")
 print(f"Valor p: {p_val}")
 ```
-**Los resultados obtenidos fueron: 
+**Los resultados obtenidos fueron:**
+
 Media muestral: 242.4057142857143
+
 Desviación estándar muestral: 6.371433269270104
+
 Estadístico t: -2.738291266150941
+
 Valor p: 0.033812195239017774
 
 
