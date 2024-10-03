@@ -21,15 +21,60 @@ Para detectar los picos en la señal EMG y determinar el número de contraccione
   Se muestra la señal capturada con todas sus características. Se utilizó una frecuencia de muestreo de 1000 Hz y se midió el músculo flexor profundo de los dedos. La longitud total de la señal es de 1801 muestras y la señal incluye 7 contracciones musculares.
 
 ## 3. Diseño del filtro
-El filtro utilizado en este laboratorio fue diseñado de acuerdo con los parámetros vistos en clase:
+El filtro utilizado en este laboratorio fue diseñado de acuerdo con los siguientes parámetros vistos en clase:
 
-- **Tipo de filtro**: [Butterworth/Chebyshev, etc.]
-- **Frecuencia de corte**: 45 Hz (pasa altas) y 400 Hz (pasa bajas).
-- **Orden del filtro**: [X], calculado en base a [justificación técnica].
-- **Tamaño del rizado (ripple)**: [X dB], si aplica.
+- **Tipo de filtro**: Butterworth
+- **Frecuencia de corte**: 20 Hz (pasa altas) y 300 Hz (pasa bajas).
+- **Orden del filtro**: 4.
+- **Tamaño del rizado (ripple)**: no aplica.
 
 **Cálculos para el orden del filtro**:
-Se realizaron cálculos para justificar el orden y las frecuencias de corte, tomando en cuenta las características del ruido y las señales de interés.
+Teniendo en cuenta los parámetros previamente establecidos, se decidió hacer un filtro Butterworth, esto con el fin de conseguir un amortiguamiento de forma idónea se realizó un filtro de 4to orden, posteriormente gracias a la literatura se estableció una frecuencia de muestreo 1000 Hz. Para la frecuencia de corte se optó acudir al artículo realizado por J.L. Correa. Et al.  Estableciendo así un valor 20Hz en el pasa Bajo, y una frecuencia de 300 Hz para el pasa altos.  Obteniendo así los siguientes cálculos:
+![image](https://github.com/user-attachments/assets/05efb522-47dd-41db-86c1-2cfd8afdc481)
+![image](https://github.com/user-attachments/assets/c5b65ff6-3e96-4312-8ad4-91331baf5865)
+La siguiente sección de código, enmarca los atributos bases para el diseño del filtro pasa altos y pasa bajos, teniendo encuentra la frecuencia de corte, con el teorema de Nyquist  y su respectiva frecuencia de corte.
+```Python
+# Función para diseñar el filtro Butterworth
+def butter_highpass(cutoff, fs, order=4):
+    nyquist = 0.5 * fs  # Frecuencia de Nyquist
+    normal_cutoff = cutoff / nyquist
+    b, a = butter(order, normal_cutoff, btype='high', analog=False)
+    return b, a
+
+def butter_lowpass(cutoff, fs, order=4):
+    nyquist = 0.5 * fs  # Frecuencia de Nyquist
+    normal_cutoff = cutoff / nyquist
+    b, a = butter(order, normal_cutoff, btype='low', analog=False)
+    return b, a
+```
+
+Para el filtro Pasa Altos:
+![image](https://github.com/user-attachments/assets/be215d75-5541-4ad1-a0d4-849bcbdc650f)
+Para el filtro Pasa Bajos:
+![image](https://github.com/user-attachments/assets/9d7f8d61-3d52-48e8-859d-49ea4c5f0457)
+
+Los filtros se establecieron con el siguiente código:
+```Python
+
+# Función para aplicar los filtros
+def filtrar_senal(data, fs):
+    
+    highcut = 20  # Frecuencia de corte para el filtro pasa altas
+    lowcut = 300  # Frecuencia de corte para el filtro pasa bajas
+    
+    # Diseñar filtros
+    b_high, a_high = butter_highpass(highcut, fs, order=4)
+    b_low, a_low = butter_lowpass(lowcut, fs, order=4)
+    
+    # Aplicar el filtro pasa altas
+    filtrada = filtfilt(b_high, a_high, data)
+    
+    # Aplicar el filtro pasa bajas
+    filtrada = filtfilt(b_low, a_low, filtrada)
+    
+    return filtrada
+```
+
 
 ## 4. Aplicación del aventanamiento
 Se aplicó una ventana de Hanning para mejorar el análisis espectral de la señal. La ventana fue seleccionada debido a su capacidad para reducir las fugas espectrales.
