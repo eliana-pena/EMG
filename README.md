@@ -30,8 +30,12 @@ El filtro utilizado en este laboratorio fue diseñado de acuerdo con los siguien
 
 **Cálculos para el orden del filtro**:
 Teniendo en cuenta los parámetros previamente establecidos, se decidió hacer un filtro Butterworth, esto con el fin de conseguir un amortiguamiento de forma idónea se realizó un filtro de 4to orden, posteriormente gracias a la literatura se estableció una frecuencia de muestreo 1000 Hz. Para la frecuencia de corte se optó acudir al artículo realizado por J.L. Correa. Et al.  Estableciendo así un valor 20Hz en el pasa Bajo, y una frecuencia de 300 Hz para el pasa altos.  Obteniendo así los siguientes cálculos:
+
 ![image](https://github.com/user-attachments/assets/05efb522-47dd-41db-86c1-2cfd8afdc481)
+
+
 ![image](https://github.com/user-attachments/assets/c5b65ff6-3e96-4312-8ad4-91331baf5865)
+
 La siguiente sección de código, enmarca los atributos bases para el diseño del filtro pasa altos y pasa bajos, teniendo encuentra la frecuencia de corte, con el teorema de Nyquist  y su respectiva frecuencia de corte.
 ```Python
 # Función para diseñar el filtro Butterworth
