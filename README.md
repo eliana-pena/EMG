@@ -36,14 +36,38 @@ Se aplicó una ventana de Hanning para mejorar el análisis espectral de la señ
 
 - **Tipo de ventana**: Hanning.
 - **Tamaño de la ventana**: 256 muestras.
-- **Forma de la ventana**:
 
-  ![Ventana de Hanning](ruta_a_imagen_ventana.png)
+Se aplicó una ventana de Hanning a la señal EMG para mejorar el análisis en el dominio de la frecuencia. La elección de esta ventana y el tamaño de 256 muestras responde a las siguientes razones:
 
-- **Comparación antes y después de la convolución**:
+### 4.1 Ventana de Hanning
+La ventana de Hanning se seleccionó por su capacidad para reducir las fugas espectrales, un problema que ocurre cuando se cortan segmentos de la señal. Esta ventana suaviza los extremos de los segmentos, reduciendo las discontinuidades, lo que se traduce en un espectro más limpio. La fórmula que define la ventana de Hanning es:
 
-  - Antes del aventanamiento: ![Señal antes](ruta_a_imagen_antes.png)
-  - Después del aventanamiento: ![Señal después](ruta_a_imagen_despues.png)
+![image](https://github.com/user-attachments/assets/653dcbb1-935e-4bd2-a270-81c4fc13740e)
+
+Esta ventana es adecuada para el análisis de señales EMG, donde se busca un equilibrio entre la reducción de ruido y una buena representación del espectro de frecuencia.
+
+### 4.2. Tamaño de la ventana: 256 muestras
+El tamaño de la ventana se definió en 256 muestras porque:
+
+![image](https://github.com/user-attachments/assets/a09b39bd-cb22-4eae-ae52-a2dc51c6f9d7)
+
+Ofrece un buen compromiso entre la resolución temporal y frecuencial: ventanas más grandes mejoran la resolución en frecuencia, pero empeoran la resolución temporal.
+Es una potencia de dos, lo que facilita cálculos más rápidos de la FFT.
+Es un valor comúnmente utilizado en estudios de análisis de EMG y suficiente para capturar las características relevantes de la señal.
+Esta elección está respaldada por estudios como Müller et al. (2004) y recomendaciones del campo del procesamiento de señales.
+
+## 4.3 Segmentación y aventanamiento de la señal
+-**Aplicación del aventanamiento de Hanning**:
+La ventana de Hanning de 256 muestras suaviza los bordes de cada segmento, evitando las discontinuidades bruscas en los límites de cada ventana. Esto minimiza los efectos de "fugas espectrales" en el análisis de Fourier y mejora la resolución de frecuencias.
+Al aplicar esta ventana, la señal se multiplica por una función que disminuye la amplitud de los extremos de cada segmento, reduciendo el impacto de las discontinuidades cuando se analizan sus componentes frecuenciales.
+
+-**Separación de segmentos no nulos**:
+Tras aplicar la ventana, los segmentos con contenido significativo (no nulo) son separados y mostrados. En la gráfica, se observan siete segmentos diferentes, cada uno correspondiente a una parte de la señal aventanada. Cada uno de estos segmentos incluye la información de la señal dentro de una ventana de 256 muestras.
+
+![image](https://github.com/user-attachments/assets/5d91fec4-4fa9-46b1-a7da-dd5f8fd782c8)
+
+Los segmentos muestran cómo varía la amplitud de la señal en cada intervalo. La aplicación de la ventana de Hanning suaviza los valores al inicio y al final de cada segmento, lo que puede observarse como una disminución gradual en los extremos de las gráficas. Este enfoque es útil para análisis espectral, ya que permite examinar las características de la señal en intervalos específicos sin distorsiones causadas por las discontinuidades en los extremos.
+
 
 ## 5. Transformada rápida de Fourier (FFT) y análisis estadístico
 Se calculó la FFT para cada contracción muscular, analizando las frecuencias dominantes y el comportamiento de la señal en el dominio de la frecuencia.
