@@ -215,7 +215,7 @@ mostramos los datos obtenidos:
 
 ```
 - **Desviación estándar**: [Valor de la desviación estándar].
-- 
+
 Para calcular la desviación estándar se utilizó la función `std` de `numpy` y `append` para añadir elementos al array. 
 ```python
 desviaciones_estandar_fft = []
@@ -234,6 +234,9 @@ los resultados obtenidos fueron:
   
   Desviación Estándar de la FFT: 37.94
 
+En este segmento, podemos apreciar que la frecuencia mediana esta ligeramente por encima de la frecuencia dominante, lo que nos indica que la mayor cantidad de frecuencias se encuentra centralizada y la energía proporcionada por el musculo es menor en este segmento. 
+
+
 **Segmento 2:**
 
   Frecuencia Mediana: 248.03 Hz
@@ -242,6 +245,8 @@ los resultados obtenidos fueron:
   
   Desviación Estándar de la FFT: 21.52
 
+Aquí observamos una separación mayor entre la frecuencia mediana y la dominante, lo que indica la presencia de componentes de alta frecuencia en el espectro. La menor desviación estándar nos da indicios de que la composición de la señal se encuentra menos dispersa. 
+
 **Segmento 3:**
 
   Frecuencia Mediana: 248.03 Hz
@@ -249,6 +254,8 @@ los resultados obtenidos fueron:
   Frecuencia Dominante: 240.16 Hz
   
   Desviación Estándar de la FFT: 28.85
+
+La baja desviación estándar junto con la similitud de la frecuencia dominante y la frecuencia mediana, nos da indicios de que la señal se distribuyó en un rango centralizado. 
 
 **Segmento 4:**
 
@@ -266,6 +273,8 @@ los resultados obtenidos fueron:
   
   Desviación Estándar de la FFT: 42.38
 
+La frecuencia dominante es mucho más alta que la frecuencia mediana y la desviación estándar es alta, lo que implica una dispersión mayor de la energía en un rango más amplio de frecuencias. 
+
 **Segmento 6:**
 
   Frecuencia Mediana: 248.03 Hz
@@ -273,6 +282,9 @@ los resultados obtenidos fueron:
   Frecuencia Dominante: 244.09 Hz
   
   Desviación Estándar de la FFT: 34.37
+
+  
+Las frecuencias mediana y dominante son muy cercanas, lo que implica que la energía está bien distribuida alrededor de esas frecuencias. La desviación estándar moderada sugiere una cierta dispersión.
 
 **Segmento 7:**
 
@@ -282,11 +294,15 @@ los resultados obtenidos fueron:
   
   Desviación Estándar de la FFT: 21.54
 
-  
+La amplia diferencia entre la frecuencia domínate y la mediana, lo que nos indica que las frecuencias más altas no se encontraban de forma centralizada en la señal, indicando que el musculo tuvo que realizar un mayor esfuerzo a lo largo de contracción en comparación con el primer segmento.  
+
+#Analisis de los resultados estadiscos 
+
+
 Gráficas de las contracciones en el dominio de la frecuencia:
 
-- ![Espectro de Frecuencias Ventana 1](ruta_a_imagen_fft1.png)
-- ![Espectro de Frecuencias Ventana 2](ruta_a_imagen_fft2.png)
+![SEGMENTOS](https://github.com/user-attachments/assets/6e4f2aeb-57ef-4d7c-9c7b-fabbea71a634)
+
 
 ## 6. Análisis estadístico
 Para evaluar la fatiga muscular, se realizó un análisis estadístico del test de medias, por el cual se establecieron las siguientes hipótesis:
