@@ -204,6 +204,8 @@ Los resultados mostraron un [aumento/disminución] en la frecuencia media confor
 ## 7. Conclusiones
 En este laboratorio, se logró procesar y analizar la señal EMG del flexor profundo de los dedos, identificando contracciones musculares y observando la fatiga muscular. Las herramientas estadísticas aplicadas permitieron evaluar los cambios en las frecuencias dominantes, lo que confirma la hipótesis de que la fatiga afecta las características espectrales de la señal.
 
+En conclusión, en el presente laboratorio se pudo comprobar la utilidad de implementar un filtro butterworth de 4to orden, para el amortiguamiento de frecuencias no deseadas, a la hora de filtrar los datos de una señal EMG, estos contando con una frecuencia de corte de 20Hz en el pasa altos, y una de 300 Hz en el pasa bajos, teniendo en cuenta la frecuencia de muestreo tomada de 1000 Hz.
+
 ## 8. Anexos
 - [Link al código utilizado](ruta_a_codigo_github.py)
 - [Archivo de datos EMG utilizado](ruta_a_datos_EMG.txt)
