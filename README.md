@@ -225,6 +225,9 @@ print(f"  Desviación Estándar de la FFT: {std_fft:.2f}\n")
 ```
 los resultados obtenidos fueron:
 
+**Gráficas de las contracciones en el dominio de la frecuencia**
+
+![SEGMENTOS](https://github.com/user-attachments/assets/6e4f2aeb-57ef-4d7c-9c7b-fabbea71a634)
 
 **Segmento 1:**
 
@@ -296,21 +299,46 @@ Las frecuencias mediana y dominante son muy cercanas, lo que implica que la ener
 
 La amplia diferencia entre la frecuencia domínate y la mediana, lo que nos indica que las frecuencias más altas no se encontraban de forma centralizada en la señal, indicando que el musculo tuvo que realizar un mayor esfuerzo a lo largo de contracción en comparación con el primer segmento.  
 
-#Analisis de los resultados estadiscos 
-
-
-Gráficas de las contracciones en el dominio de la frecuencia:
-
-![SEGMENTOS](https://github.com/user-attachments/assets/6e4f2aeb-57ef-4d7c-9c7b-fabbea71a634)
-
-
 ## 6. Análisis estadístico
 Para evaluar la fatiga muscular, se realizó un análisis estadístico del test de medias, por el cual se establecieron las siguientes hipótesis:
 
-- **Hipótesis nula (H0)**: que al momento de realizar la comparación entre las medias de cada grupo de intervalo, al momento de que el musculo llega al fallo la media ira disminuyendo.
-- **Hipótesis alternativa (H1)**: que al momento de realizar la comparación entre las medias de cada grupo de intervalo, al momento de que el musculo llega al fallo la media obtendrá un valor mayor con respecto a los demás grupos de impulsos.
+- **Hipótesis nula (H0)**: que al momento de realizar la comparación entre las medias de los últimos intervalos y los primeros, al momento de que el musculo llega al fallo la media se mantendrá parecida a cuando se empezó a tomar la muestra.
+- **Hipótesis alternativa (H1)**: que al momento de realizar la comparación entre las medias de los últimos intervalos y los primeros, la media disminuirá en torno el musculo llega al fallo por la disminución de actividad eléctrica obtenida por los electrodosde superficie.
 
-Los resultados mostraron un [aumento/disminución] en la frecuencia media conforme el músculo se fatigaba. Se concluye que [conclusión basada en el test], que la hipotesis corecta fue ........
+Para realizar esto se usó la prueba t student, en la cual si se obtiene un valor significativo menor a 0,05 se rechaza la hipótesis nula. Para esto se siguió la siguiente formula:
+
+![tstudent](https://github.com/user-attachments/assets/8b8e4fc8-1438-4fb6-9b3f-a3197854bd34)
+
+Se tomo el promedio de las frecuencias medianas de las contracciones obtenidas en los primeros datos de toda la muestra (a penas se comenzo a medir la actividad muscular), dando un valor de 49, este sera nuestro valor esperado.
+Segmento 1 primeras contracciones:
+  Frecuencia Mediana: 248.0 Hz
+Segmento 2 primeras contracciones:
+  Frecuencia Mediana: 251.97 Hz
+Segmento 3 primeras contracciones:
+  Frecuencia Mediana: 248.03 Hz
+Ahora, dentro de un vector guardaremos las frecuencias medianas y calcularemos la media muestral.
+```python
+frecuencias_medianas = np.array([232.28, 248.03, 248.03, 236.22, 244.09, 248.03, 240.16])
+media_muestral = np.mean(frecuencias_medianas)
+desviacion_estandar_muestral = np.std(frecuencias_medianas, ddof=1)
+print(f"Media muestral: {media_muestral}")
+print(f"Desviación estándar muestral: {desviacion_estandar_muestral}")
+```
+por ultimo, en conjunto con nuestro valor esperado y la funcion `stats` de `numpy`, encontramos el resultado de nuestra hipotesis
+```python
+media_esperada = 249
+t_stat, p_val = stats.ttest_1samp(frecuencias_medianas, media_esperada)
+print(f"Estadístico t: {t_stat}")
+print(f"Valor p: {p_val}")
+```
+**Los resultados obtenidos fueron: 
+Media muestral: 242.4057142857143
+Desviación estándar muestral: 6.371433269270104
+Estadístico t: -2.738291266150941
+Valor p: 0.033812195239017774
+
+
+Los resultados mostraron un disminución en la frecuencia media conforme el músculo se fatigaba. Se concluye que p es menor que 0.05, por lo tanto, la hipotesis Hipótesis alternativa es la correcta.
 
 ## 7. Conclusiones
 En este laboratorio, se logró procesar y analizar la señal EMG del flexor profundo de los dedos, identificando contracciones musculares y observando la fatiga muscular. Las herramientas estadísticas aplicadas permitieron evaluar los cambios en las frecuencias dominantes, lo que confirma la hipótesis de que la fatiga afecta las características espectrales de la señal.
