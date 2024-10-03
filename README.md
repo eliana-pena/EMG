@@ -158,10 +158,7 @@ Después de aplicar la ventana, se utilizan segmentos no nulos de la señal con 
 ## 5. Transformada rápida de Fourier (FFT) y análisis estadístico
 Se calculó la FFT para cada contracción muscular, analizando las frecuencias dominantes y el comportamiento de la señal en el dominio de la frecuencia.
 
-
-
-
-Para llevar a cabo este análisis, primero se definió una función llamada `calculadoradefft(segmentos, fs)`. Esta función utiliza la biblioteca `numpy` para calcular la transformada rápida de Fourier (FFT) de cada ventana. Además, mediante la biblioteca `matplotlib`, se grafica la FFT correspondiente a cada una de las ventanas.
+Para llevar a cabo este análisis, se definió una función llamada `calculadoradefft(segmentos, fs)`. Esta función utiliza la biblioteca `numpy` para calcular la transformada rápida de Fourier (FFT) de cada ventana. Además, mediante la biblioteca `matplotlib`, se grafica la FFT correspondiente a cada una de las ventanas.
 ```python
 def calculadoradefft(segmentos, fs):
     for i, segmento in enumerate(segmentos):
@@ -177,17 +174,115 @@ def calculadoradefft(segmentos, fs):
         plt.legend()
         plt.show()
 ```
-los resultados obtenidos son los siguientes
+Para el analisis estadistico se opto por la realizacion de una funcion llamada `estadistica`.
+```python
+def estadistica(segmentos, fs):
 
-
-
-
-
+ return espectros, frecuencias_medianas, frecuencias_dominantes
+```
 
 - **Frecuencia dominante**: [Frecuencia más alta].
+Para hallar la frecuencia dominante, primero se definio un array que guardara los datos 
+```python
+ frecuencias_dominantes = []
+```
+Ahora, por medio de la función `argmax` de la libreria `numpy` se encontrara el valor máximo de cada ventana.
+```python
+ idx_frecuencia_dominante = np.argmax(fft_segmento)
+        frecuencia_dominante = frecuencias[idx_frecuencia_dominante]
+        frecuencias_dominantes.append(frecuencia_dominante)
+```
+mostramos los datos obtenidos: 
+```python
+ print(f"  Frecuencia Dominante: {frecuencia_dominante:.2f} Hz")
+```
 - **Frecuencia media**: [Frecuencia media calculada].
-- **Desviación estándar**: [Valor de la desviación estándar].
+Para calcular la frecuencia media se siguió casi el mismo camino del usado en las frecuencias dominantes.
+Definimos el array en el que se guardaran los datos:
+```python
+  frecuencias_medianas = []
+```
 
+Ahora, por medio de la función `argsrot` y `searchsorted` de la libreria `numpy` se encontrara el valor máximo de cada ventana.
+
+```python
+  mediana = frecuencias[np.argsort(potencia.cumsum())[np.searchsorted(potencia.cumsum(), potencia.sum()/2)]]
+        frecuencias_medianas.append(mediana)
+```
+mostramos los datos obtenidos: 
+```python
+ print(f"  Frecuencia Mediana: {mediana:.2f} Hz")
+
+```
+- **Desviación estándar**: [Valor de la desviación estándar].
+- 
+Para calcular la desviación estándar se utilizó la función `std` de `numpy` y `append` para añadir elementos al array. 
+```python
+desviaciones_estandar_fft = []
+std_fft = np.std(fft_segmento)
+desviaciones_estandar_fft.append(std_fft)
+print(f"  Desviación Estándar de la FFT: {std_fft:.2f}\n")
+```
+los resultados obtenidos fueron:
+
+
+**Segmento 1:**
+
+  Frecuencia Mediana: 232.28 Hz
+  
+  Frecuencia Dominante: 224.41 Hz
+  
+  Desviación Estándar de la FFT: 37.94
+
+**Segmento 2:**
+
+  Frecuencia Mediana: 248.03 Hz
+  
+  Frecuencia Dominante: 287.40 Hz
+  
+  Desviación Estándar de la FFT: 21.52
+
+**Segmento 3:**
+
+  Frecuencia Mediana: 248.03 Hz
+  
+  Frecuencia Dominante: 240.16 Hz
+  
+  Desviación Estándar de la FFT: 28.85
+
+**Segmento 4:**
+
+  Frecuencia Mediana: 236.22 Hz
+  
+  Frecuencia Dominante: 248.03 Hz
+  
+  Desviación Estándar de la FFT: 30.79
+
+**Segmento 5:**
+
+  Frecuencia Mediana: 244.09 Hz
+  
+  Frecuencia Dominante: 259.84 Hz
+  
+  Desviación Estándar de la FFT: 42.38
+
+**Segmento 6:**
+
+  Frecuencia Mediana: 248.03 Hz
+  
+  Frecuencia Dominante: 244.09 Hz
+  
+  Desviación Estándar de la FFT: 34.37
+
+**Segmento 7:**
+
+  Frecuencia Mediana: 240.16 Hz
+  
+  Frecuencia Dominante: 283.46 Hz
+  
+  Desviación Estándar de la FFT: 21.54
+
+  
 Gráficas de las contracciones en el dominio de la frecuencia:
 
 - ![Espectro de Frecuencias Ventana 1](ruta_a_imagen_fft1.png)
