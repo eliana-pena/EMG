@@ -54,8 +54,12 @@ def butter_lowpass(cutoff, fs, order=4):
 
 Para el filtro Pasa Altos:
 ![image](https://github.com/user-attachments/assets/be215d75-5541-4ad1-a0d4-849bcbdc650f)
+
+
 Para el filtro Pasa Bajos:
 ![image](https://github.com/user-attachments/assets/9d7f8d61-3d52-48e8-859d-49ea4c5f0457)
+
+
 
 Los filtros se establecieron con el siguiente código:
 ```Python
