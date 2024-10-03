@@ -161,12 +161,12 @@ Gráficas de las contracciones en el dominio de la frecuencia:
 - ![Espectro de Frecuencias Ventana 2](ruta_a_imagen_fft2.png)
 
 ## 6. Análisis estadístico
-Para evaluar la fatiga muscular, se realizó un análisis estadístico utilizando la **prueba de medias**:
+Para evaluar la fatiga muscular, se realizó un análisis estadístico del test de medias, por el cual se establecieron las siguientes hipótesis:
 
-- **Hipótesis nula (H0)**: No hay cambios significativos en la media de la frecuencia.
-- **Hipótesis alternativa (H1)**: Hay un cambio significativo en la media de la frecuencia.
+- **Hipótesis nula (H0)**: que al momento de realizar la comparación entre las medias de cada grupo de intervalo, al momento de que el musculo llega al fallo la media ira disminuyendo.
+- **Hipótesis alternativa (H1)**: que al momento de realizar la comparación entre las medias de cada grupo de intervalo, al momento de que el musculo llega al fallo la media obtendrá un valor mayor con respecto a los demás grupos de impulsos.
 
-Los resultados mostraron un [aumento/disminución] en la frecuencia media conforme el músculo se fatigaba. Se concluye que [conclusión basada en el test].
+Los resultados mostraron un [aumento/disminución] en la frecuencia media conforme el músculo se fatigaba. Se concluye que [conclusión basada en el test], que la hipotesis corecta fue ........
 
 ## 7. Conclusiones
 En este laboratorio, se logró procesar y analizar la señal EMG del flexor profundo de los dedos, identificando contracciones musculares y observando la fatiga muscular. Las herramientas estadísticas aplicadas permitieron evaluar los cambios en las frecuencias dominantes, lo que confirma la hipótesis de que la fatiga afecta las características espectrales de la señal.
