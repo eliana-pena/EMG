@@ -6,14 +6,19 @@ La electromiografía hace parte de una de las ramas del estudio médico, el cual
 ## 2. Captura de la señal EMG
 - **Músculo medido**: Flexor profundo de los dedos.
 - **Frecuencia de muestreo**: 1000 Hz.
-- **Duración de la señal**: [Insertar duración en segundos].
-- **Longitud de la señal**: [Insertar longitud total de la señal en muestras].
-- **Cantidad de contracciones**: [Insertar número de contracciones detectadas].
+- **Duración de la señal**: La duración de la señal es 10s, en la gráfica se empezo hacer análisis a partir de 7s a 10s.
+- **Longitud de la señal**: La longitud de la señal  es 1801, que fueron capturados durante el tiempo de muestreo.
+- **Cantidad de contracciones**:
+
+  ![image](https://github.com/user-attachments/assets/19a36ead-77f9-48ee-98df-3b43f01e90e6)
+
+Para detectar los picos en la señal EMG y determinar el número de contracciones, se utilizo la función find_peaks() de la librería scipy.signal. Esta función permite identificar los picos de una señal, aplicando ciertos criterios como el umbral mínimo de altura o la distancia mínima entre picos.
+
 - **Gráfica de la señal**:
 
-  ![Gráfica de la señal EMG](ruta_a_imagen_grafica_señal.png)
+  ![image](https://github.com/user-attachments/assets/a9dd82f1-211c-44fe-846e-57b5e429d05a)
 
-  Se muestra la señal capturada con todas sus características. Se utilizó una frecuencia de muestreo de 1000 Hz y se midió el músculo flexor profundo de los dedos. La longitud total de la señal es de [X] muestras y la señal incluye [X] contracciones musculares.
+  Se muestra la señal capturada con todas sus características. Se utilizó una frecuencia de muestreo de 1000 Hz y se midió el músculo flexor profundo de los dedos. La longitud total de la señal es de 1801 muestras y la señal incluye 7 contracciones musculares.
 
 ## 3. Diseño del filtro
 El filtro utilizado en este laboratorio fue diseñado de acuerdo con los parámetros vistos en clase:
