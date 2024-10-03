@@ -47,6 +47,18 @@ Se aplicó una ventana de Hanning para mejorar el análisis espectral de la señ
 
 ## 5. Transformada rápida de Fourier (FFT)
 Se calculó la FFT para cada contracción muscular, analizando las frecuencias dominantes y el comportamiento de la señal en el dominio de la frecuencia.
+Para llevar esto acabo, primero se definió una función llamada `calculadora_de_fft_y_estadistica` y se definieron los arreglos que guardaran las frecuencias medianas, las frecuencias dominantes, la desviacion estandar y los espectros de frecuencia.
+```python
+def calculadora_de_fft_y_estadistica(segmentos, fs):
+    frecuencias_medianas = []
+    espectros = []
+    frecuencias_dominantes = []
+    desviaciones_estandar_fft = []
+```
+
+
+
+
 
 - **Frecuencia dominante**: [Frecuencia más alta].
 - **Frecuencia media**: [Frecuencia media calculada].
