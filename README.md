@@ -45,16 +45,30 @@ Se aplicó una ventana de Hanning para mejorar el análisis espectral de la señ
   - Antes del aventanamiento: ![Señal antes](ruta_a_imagen_antes.png)
   - Después del aventanamiento: ![Señal después](ruta_a_imagen_despues.png)
 
-## 5. Transformada rápida de Fourier (FFT)
+## 5. Transformada rápida de Fourier (FFT) y análisis estadístico
 Se calculó la FFT para cada contracción muscular, analizando las frecuencias dominantes y el comportamiento de la señal en el dominio de la frecuencia.
-Para llevar esto acabo, primero se definió una función llamada `calculadora_de_fft_y_estadistica` y se definieron los arreglos que guardaran las frecuencias medianas, las frecuencias dominantes, la desviacion estandar y los espectros de frecuencia.
+
+
+
+
+Para llevar a cabo este análisis, primero se definió una función llamada `calculadoradefft(segmentos, fs)`. Esta función utiliza la biblioteca `numpy` para calcular la transformada rápida de Fourier (FFT) de cada ventana. Además, mediante la biblioteca `matplotlib`, se grafica la FFT correspondiente a cada una de las ventanas.
 ```python
-def calculadora_de_fft_y_estadistica(segmentos, fs):
-    frecuencias_medianas = []
-    espectros = []
-    frecuencias_dominantes = []
-    desviaciones_estandar_fft = []
+def calculadoradefft(segmentos, fs):
+    for i, segmento in enumerate(segmentos):
+        espectro = np.abs(fft(segmento))
+        frecuencias = np.fft.fftfreq(len(segmento), d=1/fs)
+        
+        plt.figure(figsize=(10, 6))
+        plt.plot(frecuencias[:len(segmento) // 2], espectro[:len(segmento) // 2], label=f'FFT del Segmento {i+1}', color='orange')
+        plt.title(f'FFT del Segmento {i+1}')
+        plt.xlabel('Frecuencia (Hz)')
+        plt.ylabel('Magnitud')
+        plt.grid(True)
+        plt.legend()
+        plt.show()
 ```
+los resultados obtenidos son los siguientes
+
 
 
 
