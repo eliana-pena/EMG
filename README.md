@@ -176,7 +176,7 @@ En este laboratorio, se logró procesar y analizar la señal EMG del flexor prof
 - [Archivo de datos EMG utilizado](ruta_a_datos_EMG.txt)
 
 ## 9. Referencias
-- [Documentación relacionada con el laboratorio](ruta_a_documento_tecnico.pdf)
+- [1.	J.L. Correa-Figueroa, E. Morales-Sánchez, J.A. Huerta-Ruelas, J.J. González-Barbosa, C.R. Cárdenas-Pérez.  “Sistema de Adquisición de Señales SEMG para la Detección de Fatiga Muscular “. Revista Mexicana de Ingeniería Biomédica IB. Vol. 37 No. 1. 2016.  http://dx.doi.org/10.17488/RMIB.37.1.4)
 - [Guía de Prácticas de Laboratorio, Señales EMG](ruta_a_guia_practicas.pdf)
 
 ---
