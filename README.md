@@ -121,6 +121,39 @@ Tras aplicar la ventana, los segmentos con contenido significativo (no nulo) son
 
 Los segmentos muestran cómo varía la amplitud de la señal en cada intervalo. La aplicación de la ventana de Hanning suaviza los valores al inicio y al final de cada segmento, lo que puede observarse como una disminución gradual en los extremos de las gráficas. Este enfoque es útil para análisis espectral, ya que permite examinar las características de la señal en intervalos específicos sin distorsiones causadas por las discontinuidades en los extremos.
 
+### 4.4 Código para aplicar el aventanamiento
+A continuación, se presenta un fragmento de código que muestra cómo se aplica la ventana de Hanning a la señal filtrada y cómo se separan los segmentos no nulos de la señal aventanada:
+```python
+# Función para aventanar la señal con Hanning
+def aplicar_aventanamiento_hanning(data, window_size, fs):
+    # Número de muestras
+    num_muestras = len(data)
+    
+    # Crear la ventana de Hanning
+    ventana = np.hanning(window_size)
+    
+    # Preparar la lista para almacenar los resultados
+    datos_aventanados = []
+    
+    # Aplicar aventanamiento en ventanas de tamaño 'window_size'
+    for i in range(0, num_muestras - window_size, window_size):
+        segmento = data[i:i+window_size]
+        segmento_aventanado = segmento * ventana
+        datos_aventanados.append(segmento_aventanado)
+    
+    # Convertir la lista a un array de numpy
+    datos_aventanados = np.concatenate(datos_aventanados)
+    
+    return datos_aventanados
+
+```
+Aplicación de la ventana:
+
+La función aplicar_aventanamiento_hanning toma como entrada la señal filtrada (voltaje_filtrado), el tamaño de la ventana (window_size), y la frecuencia de muestreo (fs). Esta función aplica la ventana de Hanning a segmentos de la señal, suavizando las discontinuidades.
+Separación de segmentos:
+
+Después de aplicar la ventana, se utilizan segmentos no nulos de la señal con la función separar_segmentos_no_nulos. Esto permite analizar solo las partes de la señal que contienen información útil, eliminando el ruido y los valores cero.
+
 
 ## 5. Transformada rápida de Fourier (FFT) y análisis estadístico
 Se calculó la FFT para cada contracción muscular, analizando las frecuencias dominantes y el comportamiento de la señal en el dominio de la frecuencia.
